@@ -9,31 +9,47 @@ package SYSTEM;
  *
  * @author Fanny Brenes
  */
-public class Partitions {
+public class Partitions implements Comparable<Partitions> {
 
- 
-int quantity;
-float size;
+    int quantity;
+    float size;
+    FileSystem file;
 
-   
-String root;
+    String root;
 
+    public Partitions(int quantity, String root, float size) {
+        this.quantity = quantity;
+        this.root = root;
+        this.size = size;
+    }
 
-public Partitions(int quantity,String root,float size){
-this.quantity=quantity;
-this.root=root;
-this.size=size;
-}
-public Partitions(){
-}
-   public float getSize() {
+    public Partitions(int quantity, String root, float size, FileSystem file) {
+        this.quantity = quantity;
+        this.root = root;
+        this.size = size;
+        this.file = file;
+    }
+
+    public Partitions() {
+    }
+
+    public FileSystem getFile() {
+        return file;
+    }
+
+    public void setFile(FileSystem file) {
+        this.file = file;
+    }
+
+    public float getSize() {
         return size;
     }
 
     public void setSize(float size) {
         this.size = size;
     }
-   public int getQuantity() {
+
+    public int getQuantity() {
         return quantity;
     }
 
@@ -48,4 +64,16 @@ public Partitions(){
     public void setRoot(String root) {
         this.root = root;
     }
+
+    @Override
+    public int compareTo(Partitions o) {
+        if (this.getSize() > SystemManager.getInstance().getHDD(0).getSize()) {
+            return -1;
+        } else if (this.getSize() < SystemManager.getInstance().getHDD(0).getSize()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }
