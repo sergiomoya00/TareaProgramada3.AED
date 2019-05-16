@@ -15,10 +15,16 @@
     <dependencies>
         
         <dependency>
-      <groupId>com.google.apis</groupId>
-      <artifactId>google-api-services-drive</artifactId>
-      <version>v3-rev162-1.25.0</version>
-    </dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-drive</artifactId>
+            <version>v3-rev162-1.25.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.2.6.Final</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
@@ -30,39 +36,66 @@
             <version>2.5.2</version>
         </dependency>
         <dependency>
-    <groupId>jfree</groupId>
-    <artifactId>jfreechart</artifactId>
-    <version>1.0.13</version>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.13</version>
         </dependency>
         <dependency>
-    <groupId>org.jfree</groupId>
-    <artifactId>jcommon</artifactId>
-    <version>1.0.23</version>
-</dependency>
-  <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client</artifactId>
-      <version>${project.http.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client-jackson2</artifactId>
-      <version>${project.http.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.oauth-client</groupId>
-      <artifactId>google-oauth-client-jetty</artifactId>
-      <version>${project.oauth.version}</version>
-    </dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
+            <version>${project.http.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>${project.http.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client-jetty</artifactId>
+            <version>${project.oauth.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
          
-    <project.http.version>1.23.0</project.http.version>
-    <project.oauth.version>1.23.0</project.oauth.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.http.version>1.23.0</project.http.version>
+        <project.oauth.version>1.23.0</project.oauth.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   
     </properties>
     
