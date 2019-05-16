@@ -1,4 +1,4 @@
-package SendEmail;
+package SYSTEM;
 
 /**
  *
@@ -10,6 +10,8 @@ import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
 public class EmailSend {
 
+    
+    
     public void enviar(){
         try{
             String host ="smtp.gmail.com" ;
