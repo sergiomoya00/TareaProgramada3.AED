@@ -21,7 +21,7 @@ import javax.swing.text.BadLocationException;
 public class Cmd extends javax.swing.JFrame {
 
     /**
-     * Creates new form Cmd
+     * Creates new form 
      */
     public Cmd() {
         initComponents();
