@@ -8,9 +8,6 @@ package SYSTEM;
 import Collections.BinarySearchTree;
 
 import Collections.SimpleLinkeList;
-import Collections.DoubleLinkedList;
-
-import com.sun.jmx.remote.internal.ArrayQueue;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,8 +18,8 @@ import java.util.List;
  */
 public class SystemManager {
 
-    BinarySearchTree<Partitions> part[];
-
+    BinarySearchTree<Partitions> part= new BinarySearchTree<>();
+    List< BinarySearchTree<Partitions>> tree = new SimpleLinkeList<>();
     List<Partitions> partitions = new SimpleLinkeList<>();
     List<HDD> hdd = new SimpleLinkeList<>();
 
@@ -38,25 +35,37 @@ public class SystemManager {
             {
                 setRoot("hola");
                 setQuantity(2);
-
             }
-
         });
 
         instance.partitions.clear();
-
         //instance.partitions.clear();
     }
 
-    public void NumberofTrees() {
-
-        part[0] = new BinarySearchTree<>();
+      public void addTree( BinarySearchTree<Partitions> hdd) {
+        this.tree.add(hdd);
     }
 
+    public void removeTree(int index) {
+        tree.remove(index);
+    }
+
+    public void removeTreee(int index) {
+        partitions.remove(index);
+    }
+
+    public List<HDD> getTree() {
+        return hdd;
+    }
+
+    public HDD getTree(int index) {
+        HDD hdds = hdd.get(index);
+        return hdds;
+    }
     //Métodos para añadir y eliminar un elemento de tipo Order. 
     public boolean addPart(Partitions partition) {
-
-        this.part[0].insertarNodo(partition);
+        
+        part.insertarNodo(partition);
         return true;
     }
 
@@ -68,10 +77,10 @@ public class SystemManager {
     public boolean treeisempty() {
 
         boolean factor = false;
-        if (this.part[0].height() > -1) {
+        if (this.part.height() > -1) {
             factor = false;
         }
-        if (this.part[0].height() == -1) {
+        if (this.part.height() == -1) {
             factor = true;
         }
         return factor;
@@ -84,13 +93,13 @@ public class SystemManager {
 
     public int nodecounter() {
 
-        int count = this.part[0].nodecounter();
+        int count = this.part.nodecounter();
         return count;
     }
 
     public boolean verifyPartition(Partitions searchTo) {
         //Search Node
-        if (part[0].buscarNodo(searchTo)) {
+        if (part.buscarNodo(searchTo)) {
             return true;
         }
         return false;
@@ -98,18 +107,18 @@ public class SystemManager {
 
     public Partitions getPart(int index) {
 
-        return part[0].Gettreenode(index);
+        return part.Gettreenode(index);
     }
 
     //Método para obtener todos los elementos de la lista Order.
     public Partitions getPartition(Partitions partitionToGet) {
-        return part[0].getNode(partitionToGet);
+        return part.getNode(partitionToGet);
     }
 
     public Partitions deleteParts(Partitions partitionToDelete) {
 
         if (verifyPartition(partitionToDelete)) {
-            part[0].eliminarNodo(partitionToDelete);
+            part.eliminarNodo(partitionToDelete);
         }
         return null;
     }

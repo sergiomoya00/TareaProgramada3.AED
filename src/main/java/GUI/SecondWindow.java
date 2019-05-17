@@ -31,8 +31,23 @@ public class SecondWindow extends javax.swing.JFrame {
      */
     public SecondWindow() {
         initComponents();
-        SystemManager.getInstance().NumberofTrees();
+        DefaultMutableTreeNode root=new DefaultMutableTreeNode("Particiones");
+        int x=SystemManager.getInstance().getPartition().size();
+        for(int i=0;i<x;i++){
+          DefaultMutableTreeNode selectednode=new DefaultMutableTreeNode();
+          selectednode.setUserObject(SystemManager.getInstance().getPartition(i).getRoot());
+          root.add(selectednode);
+        }
+        DefaultTreeModel modeloarbol=new DefaultTreeModel (root);
+        this.jTree1.setModel(modeloarbol);
+        
+          
+     
+          
+          DefaultTreeModel model=(DefaultTreeModel)jTree1.getModel();
+          model.reload();
      }
+    
         
         
       

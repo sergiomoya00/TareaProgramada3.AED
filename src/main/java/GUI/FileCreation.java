@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Collections.BinarySearchTree;
 import SYSTEM.FileSystem;
 import SYSTEM.Partitions;
 import SYSTEM.SystemManager;
@@ -204,7 +205,7 @@ public class FileCreation extends javax.swing.JFrame {
         if(item==SystemManager.getInstance().getPartition(i).getRoot()){
             
             SystemManager.getInstance().getPartition(i).setFile(file);
-            SystemManager.getInstance().addPart(SystemManager.getInstance().getPartition(i));
+            
             }
         
         }
