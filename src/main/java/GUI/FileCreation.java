@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import Collections.BinarySearchTree;
+import Collections.BST;
 import SYSTEM.FileSystem;
 import SYSTEM.Partitions;
 import SYSTEM.SystemManager;
@@ -18,24 +18,26 @@ import java.io.PrintWriter;
  * @author Fanny Brenes
  */
 public class FileCreation extends javax.swing.JFrame {
+
     FileSystem file;
 
     public FileSystem getFile() {
         return file;
     }
-   private Partitions partition;
-   
-   public Partitions getPartition() {
+    private Partitions partition;
+
+    public Partitions getPartition() {
         return partition;
     }
+
     /**
      * Creates new form FileCreation
      */
     public FileCreation() {
         initComponents();
-        int x=SystemManager.getInstance().getPartition().size();
-        for(int i=0;i<x;i++){
-        combopar.addItem(SystemManager.getInstance().getPartition(i).getRoot());
+        int x = SystemManager.getInstance().getPartition().size();
+        for (int i = 0; i < x; i++) {
+            combopar.addItem(SystemManager.getInstance().getPartition(i).getRoot());
         }
     }
 
@@ -153,71 +155,74 @@ public class FileCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String name=txtname.getText();
-    int y=Integer.parseInt(txtsize.getText());
-    float size=y/1;
-    this.file=new FileSystem();
-    this.file.setName(name);
-    this.file.setSize(size);
-    
-    File archivo;
-    PrintWriter escribir;
-    String palabra=name+".txt";
-    archivo=new File("C:\\archivos\\"+palabra);
-    if(!archivo.exists()){
-    try{
-        archivo.createNewFile();;
-        System.out.print("Creado");}
-    
-    catch(IOException e){
-    System.out.print("Creado");
-    }   }
-    else{
-    try{
-    escribir=new PrintWriter(archivo,"utf-8");
-    escribir.print(txt.getText());
-    escribir.close();
-    }
-    catch(Exception e){
-    }
-    }
-     if(!archivo.exists()){
-    try{
-        archivo.createNewFile();;
-        System.out.print("Creado");}
-    
-    catch(IOException e){
-    System.out.print("Creado");
-    }   }
-    else{
-    try{
-    escribir=new PrintWriter(archivo,"utf-8");
-    escribir.print(txt.getText());
-    escribir.close();
-    }
-    catch(Exception e){
-    }
-    }
-   
-        int x=SystemManager.getInstance().getPartition().size();
-        for(int i=0;i<x;i++){
-        String item=combopar.getSelectedItem().toString();
-        if(item==SystemManager.getInstance().getPartition(i).getRoot()){
-            
-            SystemManager.getInstance().getPartition(i).setFile(file);
-            
+        String name = txtname.getText();
+
+        File archivo;
+        PrintWriter escribir;
+        String palabra = name + ".txt";
+        archivo = new File("C:\\archivos\\" + palabra);
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();;
+                System.out.print("Creado");
+            } catch (IOException e) {
+                System.out.print("Creado");
             }
-        
+        } else {
+            try {
+                escribir = new PrintWriter(archivo, "utf-8");
+                escribir.print(txt.getText());
+                escribir.close();
+            } catch (Exception e) {
+            }
         }
-       SecondWindow usuario = new SecondWindow();
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();;
+                System.out.print("Creado");
+            } catch (IOException e) {
+                System.out.print("Creado");
+            }
+        } else {
+            try {
+                escribir = new PrintWriter(archivo, "utf-8");
+                escribir.print(txt.getText());
+                escribir.close();
+            } catch (Exception e) {
+            }
+        }
+
+        int x = SystemManager.getInstance().getTree().size();
+
+        for (int i = 0; i < x; i++) {
+            int y = Integer.parseInt(txtsize.getText());
+            float size = y / 1;
+            this.file = new FileSystem();
+            this.file.setName(name);
+            this.file.setSize(size);
+            String item = combopar.getSelectedItem().toString();
+            if (item == SystemManager.getInstance().getTree(i).Gettreenode(0).getRoot()) {
+                Partitions lista[] = new Partitions[x];
+
+                lista[i] = new Partitions();
+                lista[i].setFile(file);
+                SystemManager.getInstance().getTree(i).insert(lista[i]);
+
+            }
+        }
+
+      
+
+        
+        SecondWindow usuario = new SecondWindow();
         usuario.setVisible(true);
-        this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtActionPerformed
-        
+
     /**
      * @param args the command line arguments
      */

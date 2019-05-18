@@ -5,7 +5,7 @@
  */
 package SYSTEM;
 
-import Collections.BinarySearchTree;
+import Collections.BST;
 
 import Collections.SimpleLinkeList;
 import java.util.ArrayList;
@@ -18,9 +18,10 @@ import java.util.List;
  */
 public class SystemManager {
 
-    BinarySearchTree<Partitions> part= new BinarySearchTree<>();
-    List< BinarySearchTree<Partitions>> tree = new SimpleLinkeList<>();
+    BST<Partitions> part= new BST<>();
+    List< BST<Partitions>> tree = new SimpleLinkeList<>();
     List<Partitions> partitions = new SimpleLinkeList<>();
+    
     List<HDD> hdd = new SimpleLinkeList<>();
 
     public static SystemManager instance;
@@ -42,8 +43,11 @@ public class SystemManager {
         //instance.partitions.clear();
     }
 
-      public void addTree( BinarySearchTree<Partitions> hdd) {
+      public void addTree( BST<Partitions> hdd) {
         this.tree.add(hdd);
+    }
+    public List<BST<Partitions>> getTree() {
+        return tree;
     }
 
     public void removeTree(int index) {
@@ -54,73 +58,23 @@ public class SystemManager {
         partitions.remove(index);
     }
 
-    public List<HDD> getTree() {
-        return hdd;
-    }
-
-    public HDD getTree(int index) {
-        HDD hdds = hdd.get(index);
-        return hdds;
+    public BST<Partitions> getTree(int index) {
+        BST<Partitions> selectedtree= tree.get(index);
+        return selectedtree;
     }
     //Métodos para añadir y eliminar un elemento de tipo Order. 
-    public boolean addPart(Partitions partition) {
-        
-        part.insertarNodo(partition);
-        return true;
-    }
+   
 
     public void addPartition(Partitions partition) {
         this.partitions.add(partition);
 
     }
 
-    public boolean treeisempty() {
-
-        boolean factor = false;
-        if (this.part.height() > -1) {
-            factor = false;
-        }
-        if (this.part.height() == -1) {
-            factor = true;
-        }
-        return factor;
-    }
+    
 
     public void removePartition(Partitions partition) {
         this.partitions.remove(partition);
 
-    }
-
-    public int nodecounter() {
-
-        int count = this.part.nodecounter();
-        return count;
-    }
-
-    public boolean verifyPartition(Partitions searchTo) {
-        //Search Node
-        if (part.buscarNodo(searchTo)) {
-            return true;
-        }
-        return false;
-    }
-
-    public Partitions getPart(int index) {
-
-        return part.Gettreenode(index);
-    }
-
-    //Método para obtener todos los elementos de la lista Order.
-    public Partitions getPartition(Partitions partitionToGet) {
-        return part.getNode(partitionToGet);
-    }
-
-    public Partitions deleteParts(Partitions partitionToDelete) {
-
-        if (verifyPartition(partitionToDelete)) {
-            part.eliminarNodo(partitionToDelete);
-        }
-        return null;
     }
 
     public List<Partitions> getPartition() {

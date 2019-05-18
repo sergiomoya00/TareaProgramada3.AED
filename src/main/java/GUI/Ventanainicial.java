@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import Collections.BinarySearchTree;
+import Collections.BST;
 import Collections.Validation;
 import SYSTEM.FileSystem;
 import SYSTEM.HDD;
@@ -123,7 +123,6 @@ public class Ventanainicial extends javax.swing.JFrame {
        
         
         for(int i=0;i<x;i++){
-        BinarySearchTree<Partitions> tree[] = null;
         this.partition= new Partitions();
         this.file=new FileSystem();
         this.file.setName("null");
@@ -134,12 +133,13 @@ public class Ventanainicial extends javax.swing.JFrame {
         this.partition.setSize(s);
         this.partition.setFile(file);
         SystemManager.getInstance().addPartition(partition);
-        BinarySearchTree<Partitions> part=new BinarySearchTree<>();
-        part.insertarNodo(partition);
+        BST<Partitions> part=new BST<>();
+        part.insert(partition);
         SystemManager.getInstance().addTree(part);
+        
         w=w+1;
         }
-       
+        
         SecondWindow usuario = new SecondWindow();
         usuario.setVisible(true);
         this.setVisible(false);
