@@ -1,6 +1,5 @@
 package GUI;
 
-
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Message;
@@ -9,8 +8,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
-
-
+import Collections.BinarySearchTree;
+import SYSTEM.*;
+import SYSTEM.EmailSend;
+import GUI.Ventanainicial;
 
 public class EditorTxt extends javax.swing.JFrame {
 
@@ -36,6 +37,7 @@ public class EditorTxt extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,12 +48,24 @@ public class EditorTxt extends javax.swing.JFrame {
         Texto1.setRows(5);
         jScrollPane1.setViewportView(Texto1);
 
-        jButton1.setText("Contar Palabra");
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Enviar Correo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Contar Palabra");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -71,6 +85,8 @@ public class EditorTxt extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -85,9 +101,10 @@ public class EditorTxt extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
                 .addGap(37, 37, 37))
         );
 
@@ -95,48 +112,36 @@ public class EditorTxt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       try{
-            String host ="smtp.gmail.com" ;
-            String user = "checho.quiros99@gmail.com";
-            String pass = " ";
-            String to = "sergioquiros1999@gmail.com";
-            String from = "checho.quiros99@gmail.com";
-            String subject = "Texto Enviado";
-            String messageText = Texto1.getText();
-            boolean sessionDebug = false;
-
-            Properties props = System.getProperties();
-
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", host);
-            props.put("mail.smtp.port", "587");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.required", "true");
-
-            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-            Session mailSession = Session.getDefaultInstance(props, null);
-            mailSession.setDebug(sessionDebug);
-            Message msg = new MimeMessage(mailSession);
-            msg.setFrom(new InternetAddress(from));
-            InternetAddress[] address = {new InternetAddress(to)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            msg.setSubject(subject); msg.setSentDate(new Date());
-            msg.setText(messageText);
-
-           Transport transport=mailSession.getTransport("smtp");
-           transport.connect(host, user, pass);
-           transport.sendMessage(msg, msg.getAllRecipients());
-           transport.close();
-           System.out.println("message send successfully");
-           JOptionPane.showMessageDialog(null, "Correo Enviado exitosamente");
-        }catch(Exception ex)
-        {
-            System.out.println(ex);
+        try {
+       //pass=  =txtemail.getText();
+       EmailSend NewMail=new EmailSend();
+       
+        } catch (Exception ex) {
+            
             JOptionPane.showMessageDialog(null, "Correo no se pudo enviar, ocurrio un error");
         }
 
-    
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     //   String pass=txtemail.getText();
+        Texto1.getText();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        /*BinarySearchTree NewTree= new BinarySearchTree();
+        NewTree.InsertarNodo();
+        countSize==0;
+        while(countS!=NewTree.){
+        for (int countS=0, countS == NewTree.preOrder(), countS ++) {
+            Object WordS = NewTree.buscarNodo(jTextField1.getText());
+            int CountW = 0;
+            if (WordS == (jTextField1).getText()) {
+                CountW++;        
+           
+            */
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,15 +176,15 @@ public class EditorTxt extends javax.swing.JFrame {
                 new EditorTxt().setVisible(true);
             }
         });
-}
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Texto1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
-

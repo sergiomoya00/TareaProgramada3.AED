@@ -31,16 +31,20 @@ public class SecondWindow extends javax.swing.JFrame {
      */
     public SecondWindow() {
         initComponents();
-        int x=SystemManager.getInstance().getPartition().size();
-        for(int i=0;i<x;i++){
-        namera.addItem(SystemManager.getInstance().getPartition(i).getRoot());
-        }
+        SystemManager.getInstance().NumberofTrees();
+     }
+        
+        
+      
+        
+    
        
-    }
+       
+    
      public void refresh(){
         int t=SystemManager.getInstance().getPartition().size();
-        javax.swing.JButton jButton1[]=new  javax.swing.JButton[t];
         
+        javax.swing.JButton jButton1[]=new  javax.swing.JButton[t];
         int e=0;
         
      for(int i=0;i<t;i++){
@@ -72,6 +76,7 @@ public class SecondWindow extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         namera = new javax.swing.JComboBox<>();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +112,13 @@ public class SecondWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Añadir archivo a particion");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,7 +139,8 @@ public class SecondWindow extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
+                            .addComponent(jButton2)
+                            .addComponent(jButton5))))
                 .addContainerGap(327, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -148,8 +161,13 @@ public class SecondWindow extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(37, 37, 37)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -164,11 +182,15 @@ public class SecondWindow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     try{ int e= SystemManager.getInstance().getPartition().size();
+        int x=SystemManager.getInstance().getPartition().size();
+        for(int i=0;i<x;i++){
+        namera.addItem(SystemManager.getInstance().getPartition(i).getRoot());
+        }
 
         
             
           for(int i=0;i<e;i++){
-          DefaultMutableTreeNode selectednode=(DefaultMutableTreeNode)jTree1.getLastSelectedPathComponent();
+          DefaultMutableTreeNode selectednode=(DefaultMutableTreeNode)jTree1.getSelectionPath().getLastPathComponent();
           DefaultMutableTreeNode newnode=new DefaultMutableTreeNode (SystemManager.getInstance().getPartition(i).getRoot());
           selectednode.add(newnode);
      
@@ -184,9 +206,9 @@ public class SecondWindow extends javax.swing.JFrame {
     DefaultPieDataset dtac= new DefaultPieDataset();
     int x= SystemManager.getInstance().getPartition().size();
     for (int i=0;i<x;i++){
-     dtac.setValue(SystemManager.getInstance().getPartition(i).getRoot(), SystemManager.getInstance().getPartition(i).getSize());
+     dtac.setValue(SystemManager.getInstance().getPartition(i).getRoot()+SystemManager.getInstance().getPartition(i).getSize(), SystemManager.getInstance().getPartition(i).getSize());
     }
-    dtac.setValue("Espacio libre", SystemManager.getInstance().getHDD(0).getFreespace());
+    dtac.setValue("Espacio libre", SystemManager.getInstance().getHDD(0).getFreespace()+SystemManager.getInstance().getHDD(0).getSize());
     JFreeChart ch= ChartFactory.createPieChart3D("Almacenamiento", dtac, true, true, false);
     ChartPanel cp= new ChartPanel(ch);
     add(cp);
@@ -199,6 +221,7 @@ public class SecondWindow extends javax.swing.JFrame {
        for(int i=0;i<x;i++){
        if(SystemManager.getInstance().getPartition(i).getRoot()==namera.getSelectedItem()){
        SystemManager.getInstance().removePartition(SystemManager.getInstance().getPartition(i));
+       
        }
        
        }
@@ -212,6 +235,12 @@ public class SecondWindow extends javax.swing.JFrame {
        }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    FileCreation usuario = new FileCreation();
+        usuario.setVisible(true);
+        this.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +282,7 @@ public class SecondWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     private javax.swing.JComboBox<String> namera;

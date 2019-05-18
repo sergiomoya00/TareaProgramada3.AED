@@ -6,6 +6,7 @@
 package GUI;
 
 import Collections.Validation;
+import SYSTEM.FileSystem;
 import SYSTEM.HDD;
 import SYSTEM.Partitions;
 import SYSTEM.SystemManager;
@@ -18,6 +19,12 @@ import javax.swing.JOptionPane;
 public class Ventanainicial extends javax.swing.JFrame {
    private Partitions partition;
    private HDD hdd;
+
+    public FileSystem getFile() {
+        return file;
+    }
+   private FileSystem file;
+   
    public Partitions getPartition() {
         return partition;
     }
@@ -65,6 +72,12 @@ public class Ventanainicial extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 60, -1));
+
+        txtemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtemailActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 60, -1));
 
         jLabel1.setText("Tamaño del disco duro");
@@ -112,14 +125,21 @@ public class Ventanainicial extends javax.swing.JFrame {
         this.hdd.setFreespace(u);
         this.hdd.setSpaceused(su);
         SystemManager.getInstance().addHDD(hdd);
+       
         
         for(int i=0;i<x;i++){
         this.partition= new Partitions();
+        this.file=new FileSystem();
+        this.file.setName("null");
+        this.file.setSize(0);
         String t=Integer.toString(w);
         this.partition.setRoot(t+".NTFS");
         this.partition.setQuantity(x);
         this.partition.setSize(s);
+        this.partition.setFile(file);
         SystemManager.getInstance().addPartition(partition);
+        
+         
         w=w+1;
         }
        
@@ -137,6 +157,10 @@ public class Ventanainicial extends javax.swing.JFrame {
     private void txtnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnumberActionPerformed
+
+    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtemailActionPerformed
 
     /**
      * @param args the command line arguments

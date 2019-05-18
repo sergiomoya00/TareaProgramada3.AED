@@ -9,7 +9,7 @@ package SYSTEM;
  *
  * @author Fanny Brenes
  */
-public class HDD {
+public class HDD  {
 float size;
 
    
@@ -43,6 +43,8 @@ public HDD(){}
     public void setSize(float size) {
         this.size = size;
     }
+
+    
 
 
 }
