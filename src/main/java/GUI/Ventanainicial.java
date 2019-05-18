@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Collections.BST;
 import Collections.Validation;
 import SYSTEM.FileSystem;
 import SYSTEM.HDD;
@@ -109,7 +110,7 @@ public class Ventanainicial extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     Validation sec=new Validation();
-    
+  
     boolean number=sec.Validate(txtnumber.getText());
     boolean size=sec.Validate(txtsize.getText());
     if (number!=false&&size!=false){
@@ -138,11 +139,13 @@ public class Ventanainicial extends javax.swing.JFrame {
         this.partition.setSize(s);
         this.partition.setFile(file);
         SystemManager.getInstance().addPartition(partition);
+        BST<Partitions> part=new BST<>();
+        part.insert(partition);
+        SystemManager.getInstance().addTree(part);
         
-         
         w=w+1;
         }
-       
+        
         SecondWindow usuario = new SecondWindow();
         usuario.setVisible(true);
         this.setVisible(false);

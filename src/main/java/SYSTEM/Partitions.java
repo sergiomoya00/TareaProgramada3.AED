@@ -67,9 +67,9 @@ public class Partitions implements Comparable<Partitions> {
 
     @Override
     public int compareTo(Partitions o) {
-        if (this.getSize() > SystemManager.getInstance().getHDD(0).getSize()) {
+        if (SystemManager.getInstance().getTree().size() > SystemManager.getInstance().getTree(0).nodecounter()) {
             return -1;
-        } else if (this.getSize() < SystemManager.getInstance().getHDD(0).getSize()) {
+        } else if (SystemManager.getInstance().getTree().size() < SystemManager.getInstance().getTree(0).nodecounter()) {
             return 1;
         } else {
             return 0;

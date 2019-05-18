@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Collections.BST;
 import Collections.Validation;
 import SYSTEM.HDD;
 import SYSTEM.Partitions;
@@ -100,6 +101,9 @@ public class PartitionCreation extends javax.swing.JFrame {
         this.partition.setRoot(txtroot.getText()+".NTFS");
         this.partition.setSize(e);
         SystemManager.getInstance().addPartition(partition);
+          BST<Partitions> part=new BST<>();
+          part.insert(partition);
+          SystemManager.getInstance().addTree(part);
         
         SecondWindow usuario = new SecondWindow();
         usuario.setVisible(true);

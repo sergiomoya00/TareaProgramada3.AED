@@ -8,7 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
-import Collections.BinarySearchTree;
+import Collections.BST;
 import SYSTEM.*;
 import SYSTEM.EmailSend;
 import GUI.Ventanainicial;

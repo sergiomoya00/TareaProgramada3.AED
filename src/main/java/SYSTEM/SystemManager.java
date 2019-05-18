@@ -5,12 +5,9 @@
  */
 package SYSTEM;
 
-import Collections.BinarySearchTree;
+import Collections.BST;
 
 import Collections.SimpleLinkeList;
-import Collections.DoubleLinkedList;
-
-import com.sun.jmx.remote.internal.ArrayQueue;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,10 +18,15 @@ import java.util.List;
  */
 public class SystemManager {
 
-    BinarySearchTree<Partitions> part[];
-    BinarySearchTree<TextEdition> txtTree;
+    //BST<Partitions> part[];
+    BST<TextEdition> txtTree;
+
+
+    BST<Partitions> part= new BST<>();
+    List< BST<Partitions>> tree = new SimpleLinkeList<>();
 
     List<Partitions> partitions = new SimpleLinkeList<>();
+    
     List<HDD> hdd = new SimpleLinkeList<>();
     List<TextEdition> txt = new SimpleLinkeList<>();
 
@@ -40,80 +42,45 @@ public class SystemManager {
             {
                 setRoot("hola");
                 setQuantity(2);
-
             }
-
         });
 
         instance.partitions.clear();
-
         //instance.partitions.clear();
     }
 
-    public void NumberofTrees() {
-
-        part[0] = new BinarySearchTree<>();
+      public void addTree( BST<Partitions> hdd) {
+        this.tree.add(hdd);
+    }
+    public List<BST<Partitions>> getTree() {
+        return tree;
     }
 
+    public void removeTree(int index) {
+        tree.remove(index);
+    }
+
+    public void removeTreee(int index) {
+        partitions.remove(index);
+    }
+
+    public BST<Partitions> getTree(int index) {
+        BST<Partitions> selectedtree= tree.get(index);
+        return selectedtree;
+    }
     //Métodos para añadir y eliminar un elemento de tipo Order. 
-    public boolean addPart(Partitions partition) {
-
-        this.part[0].insertarNodo(partition);
-        return true;
-    }
+   
 
     public void addPartition(Partitions partition) {
         this.partitions.add(partition);
 
     }
 
-    public boolean treeisempty() {
-
-        boolean factor = false;
-        if (this.part[0].height() > -1) {
-            factor = false;
-        }
-        if (this.part[0].height() == -1) {
-            factor = true;
-        }
-        return factor;
-    }
+    
 
     public void removePartition(Partitions partition) {
         this.partitions.remove(partition);
 
-    }
-
-    public int nodecounter() {
-
-        int count = this.part[0].nodecounter();
-        return count;
-    }
-
-    public boolean verifyPartition(Partitions searchTo) {
-        //Search Node
-        if (part[0].buscarNodo(searchTo)) {
-            return true;
-        }
-        return false;
-    }
-
-    public Partitions getPart(int index) {
-
-        return part[0].Gettreenode(index);
-    }
-
-    //Método para obtener todos los elementos de la lista Order.
-    public Partitions getPartition(Partitions partitionToGet) {
-        return part[0].getNode(partitionToGet);
-    }
-
-    public Partitions deleteParts(Partitions partitionToDelete) {
-
-        if (verifyPartition(partitionToDelete)) {
-            part[0].eliminarNodo(partitionToDelete);
-        }
-        return null;
     }
 
     public List<Partitions> getPartition() {
