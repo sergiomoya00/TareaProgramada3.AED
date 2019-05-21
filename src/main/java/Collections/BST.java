@@ -66,6 +66,21 @@ public Partitions Gettreenode(int index) {
                     
                 return partition;
 	}
+public String Gettreenod(int index) {
+                String txt= null;
+		StringBuffer sb = new StringBuffer();
+                int i=0;
+                for (T data : this){
+                    if(i<=index){
+                    sb.append(data.toString());
+                    txt=(String) data;
+                    i++;
+                    }
+                   }
+                    
+                    
+                return txt;
+	}
 
 /*****************************************************
 *
@@ -229,7 +244,7 @@ public Partitions Gettreenode(int index) {
       else
          return new Node<T>(p.data, cloneHelper(p.left), cloneHelper(p.right));
    }
-
+   
 /*************************************************
  *
  *            MISC
@@ -405,7 +420,7 @@ public Partitions Gettreenode(int index) {
          return data.toString();
       }
    } //end of Node
-}//end of BST
+}   //end of BST
 
 class MyComp1 implements Comparator<Integer>
 {

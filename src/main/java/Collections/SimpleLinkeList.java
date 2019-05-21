@@ -215,6 +215,7 @@ public class SimpleLinkeList<T> implements List<T> {
         return oldValue;
 
     }
+    
 
     @Override
     public int indexOf(Object o) {

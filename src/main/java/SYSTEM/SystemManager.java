@@ -6,11 +6,11 @@
 package SYSTEM;
 
 import Collections.BST;
-
 import Collections.SimpleLinkeList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 
 /**
  *
@@ -19,16 +19,16 @@ import java.util.List;
 public class SystemManager {
 
     //BST<Partitions> part[];
-    BST<TextEdition> txtTree;
-
-
-    BST<Partitions> part= new BST<>();
+    BST<Partitions> part = new BST<>();
+    
     List< BST<Partitions>> tree = new SimpleLinkeList<>();
+    BST<String> bstree = new BST<>();
+    List< BST<String>> lit = new SimpleLinkeList<>();
 
     List<Partitions> partitions = new SimpleLinkeList<>();
-    
+
     List<HDD> hdd = new SimpleLinkeList<>();
-    List<TextEdition> txt = new SimpleLinkeList<>();
+    List<TextEdition> txtedition = new SimpleLinkeList<>();
 
     public static SystemManager instance;
 
@@ -49,9 +49,35 @@ public class SystemManager {
         //instance.partitions.clear();
     }
 
-      public void addTree( BST<Partitions> hdd) {
+    public BST getTreeString() {
+        return bstree;
+    }
+
+    public String getTreeString(int index) {
+        String selectedtree1 = bstree.Gettreenod(index);
+        return selectedtree1;
+    }
+
+    public void addNode(String text) {
+        bstree.insert(text);
+    }
+
+    public String getNode(int index) {
+        String t = bstree.Gettreenod(index);
+        return t;
+
+    }
+
+    public int NodeCounter() {
+        int t = bstree.nodecounter();
+        return t;
+
+    }
+
+    public void addTree(BST<Partitions> hdd) {
         this.tree.add(hdd);
     }
+
     public List<BST<Partitions>> getTree() {
         return tree;
     }
@@ -65,18 +91,15 @@ public class SystemManager {
     }
 
     public BST<Partitions> getTree(int index) {
-        BST<Partitions> selectedtree= tree.get(index);
+        BST<Partitions> selectedtree = tree.get(index);
         return selectedtree;
     }
     //Métodos para añadir y eliminar un elemento de tipo Order. 
-   
 
     public void addPartition(Partitions partition) {
         this.partitions.add(partition);
 
     }
-
-    
 
     public void removePartition(Partitions partition) {
         this.partitions.remove(partition);
@@ -96,19 +119,19 @@ public class SystemManager {
     }
 
     public void addTextEdition(TextEdition txt) {
-        this.txt.add(txt);
+        this.txtedition.add(txt);
     }
 
     public void removeTextEdition(int index) {
-        txt.remove(index);
+        txtedition.remove(index);
     }
 
     public List<TextEdition> getTextEdition() {
-        return txt;
+        return txtedition;
     }
 
     public TextEdition getTextEditor(int index) {
-        TextEdition txt1  = txt.get(index);
+        TextEdition txt1 = txtedition.get(index);
         return txt1;
     }
 
@@ -149,4 +172,25 @@ public class SystemManager {
 
     }
 
+    public void createTree(String content) {
+
+        if (content != null) {
+            //
+            // Remove the punctuation from the content
+            //
+            content = content.replaceAll("(\\w+)\\p{Punct}(\\s|$)", "$1$2");
+            String[] words = content.split(" ");
+            
+            for (int i = 0; i < words.length; i++) {
+                bstree.insert(words[i]);
+            }
+        }
+        
+
+    }
+    
+    
+    
 }
+
+    

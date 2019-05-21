@@ -146,6 +146,12 @@ public class SecondWindow extends javax.swing.JFrame {
             }
         });
 
+        namera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameraActionPerformed(evt);
+            }
+        });
+
         jButton5.setText("Añadir archivo a particion");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +281,10 @@ public class SecondWindow extends javax.swing.JFrame {
         usuario.setVisible(true);
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void nameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameraActionPerformed
 
     /**
      * @param args the command line arguments
